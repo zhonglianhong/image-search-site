@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片搜索</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #search-container {
+            text-align: center;
+        }
+
+        #search-input {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #search-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        #search-button:hover {
+            background-color: #0056b3;
+        }
+
+        #image-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="search-container">
+        <input type="text" id="search-input" placeholder="输入字符串搜索图片">
+        <button id="search-button">搜索</button>
+    </div>
+    <div id="image-container"></div>
+
+    <script>
+        const searchButton = document.getElementById('search-button');
+        const searchInput = document.getElementById('search-input');
+        const imageContainer = document.getElementById('image-container');
+
+        // 这里简单模拟图片关联，实际应用中需要连接真实的图片数据库
+        const imageMap = {
+            "apple": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/220px-Red_Apple.jpg",
+            "banana": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Bananas_white_background.jpg/220px-Bananas_white_background.jpg"
+        };
+
+        searchButton.addEventListener('click', function () {
+            const searchTerm = searchInput.value;
+            if (imageMap[searchTerm]) {
+                const img = document.createElement('img');
+                img.src = imageMap[searchTerm];
+                img.alt = searchTerm;
+                imageContainer.innerHTML = '';
+                imageContainer.appendChild(img);
+            } else {
+                imageContainer.innerHTML = '未找到相关图片';
+            }
+        });
+    </script>
+</body>
+
+</html>
